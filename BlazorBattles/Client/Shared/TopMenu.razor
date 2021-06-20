@@ -1,0 +1,26 @@
+﻿@inject IBananaService BananaService
+
+<div class="top-menu">
+    <img src="/icons/banana.png" alt="Alternate Text" />
+    <span class="popover-header">@BananaService.Bananas</span>
+    <AddBananas BananasAdded="AddBananas" />
+</div>
+
+
+@code {
+    [Parameter]
+    public int Bananas { get; set; } = 100;
+
+    protected override void OnInitialized()
+    {
+        BananaService.OnChange += StateHasChanged;
+
+    }
+
+    public void AddBananas(int amount)
+    {
+        Bananas += amount;
+
+    }
+
+}
